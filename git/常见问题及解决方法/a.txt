@@ -32,54 +32,33 @@
 
 再push就成功了
 
-## git忽略一个文件
+## 要通过.gitignore忽略文件，您可以按照以下步骤操作：
 
-### 1.1  添加.gitignore文件
-
-在.gitignore文件中指定的目录和文件会在下次push时从git仓库中删除，本地文件不会删除。
-
-创建.gitignore文件，这个文件不仅能创建在根目录，而且也能在子目录下创建，个数不限。若多个.gitignore文件中有相同的模式匹配，则低级目录的匹配规则会覆盖高级目录的匹配规则。
-
-同时.gitignore文件中匹配模式的相对路径就是该文件的路径，这里只考虑项目根目录下的.gitignore文件的匹配。
-
-匹配字符串的格式详见：gitignore。开头为“#”代表改行为注释，/是路径分隔符，*代表处斜杠以外任何东西，**加上斜杠代表对应目录里面的所有东西（包括文件和目录）。如：
+1. 创建一个名为`.gitignore`的文件，并将其放置在您的项目根目录下。
+2. 编辑`.gitignore`文件，将您希望忽略的文件或文件夹的名称添加到文件中，每个名称占一行。您可以使用通配符来匹配多个文件或文件夹，例如`*.txt`将忽略所有以`.txt`结尾的文件。
+3. 保存并关闭`.gitignore`文件。
+4. 执行以下命令将`.gitignore`文件添加到git仓库中：
 
 ```
-.idea
-src/test/**
-target/
-src/main/resources/my-*.xml
+git add .gitignore
 ```
 
-### 1.2  问题：修改.gitignore不生效
+1. 提交更改：
 
-据git官方介绍，当文件处于tracked（已被追踪）状态时，不会受到.gitignore文件的影响。这里就要提到git中的两种状态：已跟踪或未跟踪，工作目录下的每一个文件都不外乎这两种状态。
-
-已跟踪状态是指那些：在暂存区中（add）、在本地仓库中（commit）及在远程仓库中（push）的文件。你从远程仓库中clone下来的项目都属于被追踪的状态。
-未跟踪状态的文件与已跟踪状态的文件相对应，最常见的就是自己本地新创建的还没有add进暂存区的文件。
-下面是使用Git 时文件的生命周期：
-
-那么怎么将文件从已跟踪状态编程被跟踪状态呢？git官方给出：使用gitignore文件的目的是为了让之前没有被跟踪的文件在之后不会被跟踪。而如果想要停止跟踪一个已经被跟踪的文件，就使用指令“git rm --cached 文件路径”。
-
-The purpose of gitignore files is to ensure that certain files not tracked by Git remain untracked.To stop tracking a file that is currently tracked, use git rm --cached.
-
-在上述操作后可以输入git status指令来检测取消跟踪是否生效，git status能显示所有未被跟踪的文件，如你新创建一个README文件后，输入git status，你将看到一个新的未跟踪文件：
-
-```shell
-$ echo 'My Project' > README
-$ git status
-On branch master
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-    README
-
-nothing added to commit but untracked files present (use "git add" to track)
+```
+git commit -m "Add .gitignore file"
 ```
 
-2. 通过指令忽略提交文件
+从现在开始，git将忽略`.gitignore`文件中指定的文件或文件夹。请注意，`.gitignore`文件只会影响尚未添加到git仓库的文件。如果您已经将某个文件添加到git仓库中，然后将其添加到`.gitignore`文件中，git仍将跟踪该文件的更改。
 
-  通过.gitignore文件能够一劳永逸的让参与该项目的所有开发人员在push时不将指定文件和目录提交到远程仓库，但是这么做也会删除中央仓库中指定的文件。
+此外，如果您已经将某个文件添加到git仓库中，但现在希望将其从git仓库中删除并忽略，可以使用以下命令：
 
-而如果我们想在不删除中央仓库文件的情况下也能忽略某些文件的提交，可以在自己本地使用指令：git update-index --assume-unchanged /path/to/file  来忽略某个文件或文件夹的提交，使用：git update-index --no-assume-unchanged /path/to/file  来取消忽略某个文件或文件夹的提交。
-原文链接：https://blog.csdn.net/qq_34039868/article/details/103906124
+```
+git rm --cached <文件名>
+```
+
+这将从git仓库中删除该文件，并将其添加到`.gitignore`文件中以便忽略。然后，您需要提交更改：
+
+```
+git commit -m "Remove and ignore <文件名>"
+```
