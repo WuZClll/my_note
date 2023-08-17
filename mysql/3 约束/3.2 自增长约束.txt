@@ -1,0 +1,28 @@
+-- 自增长约束
+-- auto_increment实现主键自增长 所以自增长约束只能有一个
+create table t_user1(
+id int primary key auto_increment, 
+name varchar(20)
+)；
+insert into t_user1 values(null,'张三');
+insert into t_user1(name) values('李四');
+-- 指定自增长的初始值
+
+-- 方式1：创建表时指定
+create table t_user2(
+id int primary key auto_increment, 
+name varchar(20)
+)auto_increment=100;
+insert into t_user2 values(null,'张三');
+
+-- 方式2：创建表之后指定
+create table t_user3(
+id int primary key auto_increment, 
+name varchar(20)
+);
+alter table t_user3 auto_increment=200;
+insert into t_user3 values(null,'张三');
+insert into t_user3 values(null,'李四');
+
+delete from t_user1;-- delete删除数据后，自增长在最后一个值的基础上加1
+truncate t_user3;-- truncate删除数据 无法保留上次自增的记录

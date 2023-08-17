@@ -1,0 +1,17 @@
+-- 分页查询
+-- 方法一 显示前n条
+#select 字段1，字段2...from 表名 limit n;
+-- 方法二 从第m条索引开始 查询n条
+#select 字段1，字段2...from 表名 limit m，n;
+
+-- 1.查询前5条记录
+select * from product limit 5;
+-- 2.从第4条开始显示，显示5条
+select * from product limit 3,5;#注意 第一条是第0条
+-- 3.分页显示
+-- eg京东
+select * from product limit 0，60;#第一页-->(1-1）*60=0
+select * from product limit 60,60;#第二页-->(2-1）*60=60
+select * from product limit 120,60;#第三页-->(3-1）*60=120
+select * from product limit 180,60;#第四页-->(4-1）*60=180
+select * from product limit (n-1)*60,60;#第n页-->(1-1）*60

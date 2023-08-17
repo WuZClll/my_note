@@ -1,0 +1,344 @@
+-- Ⅰ DDL操作
+
+-- 查看所有数据库
+show databases;
+-- 创建数据库
+create database mydb1;
+create database if not exists mydb1;
+-- 选择使用哪一个数据库
+use mydb1;
+-- 删除数据库
+drop database mydb1;
+drop database if exists mydb1;
+-- 修改数据库编码
+alter datsbase mydb1 character set utf-8;
+
+-- 表
+
+
+
+
+-- 选择mydb1
+use mydb1;
+-- 创建表
+create table if not exists student(
+sid int,-- 学号
+name varchar(20),
+gender varchar(10),-- 性别
+age int,
+birth date,
+address varchar(20),-- 地址
+score double
+);
+
+
+-- 查看表或表中某行
+select * from 表名 where 条件1and条件2 ;  #*代表所有列
+select * from 表名 where 某一列名 like '%华%'; # 查询表中某项有 华 字的行
+select * from 表名 where 某一列名<=>null  当条件内表中为空时 不用=而用<=>
+-- 1 查看当前数据库所有的表
+show tables;
+-- 2 查看指定表的创建语句
+show create table student;
+-- 3 查看表结构
+desc student;-- desc 描
+-- 4 删除表
+drop table student;
+
+-- 修改表结构
+-- 1 添加列：alter table 表名 add 列名 类型（长度）【约束】；
+  -- 需求： 为student表添加一个新的字符段为：系别 dept 类型为 varchar（20）
+# alter table 表名    add 列名 类型（长度）【约束】;
+	alter table student add dept varchar(20);
+-- 2 修改列名和类型： alter table 表名 change 旧列名 新列名 类型（长度） 【约束】；
+  -- 需求：为student表的dept字段更换为department varchar（30）
+# alter table 表名    change 旧列名 新列名   类型（长度） 【约束】;
+	alter table student change dept department varchar(30);
+-- 3 删除列：alter table 表名 drop 列名
+  -- 删除student表中的department;
+# alter table 表名 drop 列名;
+  alter table student drop department;
+-- 4 修改表名： rename table 表名 to 新表名
+  -- 需求：将student表的名字改为stu
+#rename table 表名 to 新表名
+ rename table student to stu;
+ 
+ -- Ⅱ DML操作
+ 
+ -- 1 数据的插入
+ -- 格式1：insert into        表（列名1，列名2，列名3...）                          value（值1，值2，值3...）；
+                 insert into student(sid,name,gender,age,birth,address,score)values(1001,'张三','男',18,'2001-12-23','北京',85.5);
+       -- 一次插入多行
+             insert into student(sid,name,gender,age,birth,address,score)values(1002,'王五','女',19,'2000-12-23','上海',82.5),
+                                                                                                                     (1003,'李四','男',18,'2001-12-2','南京',80);
+       -- 只给某一列赋值
+             insert into student(sid)values(1005);
+
+ -- 格式2：insert into 表          value（值1，值2，值3...);//向表中插入所有列
+                 insert into student values(1006,'张华','女',21,'1999-01-08','广州',79);
+      -- 一次插入多行
+           insert into student values(1007,'钱博','男',21,'2005-05-08','武汉',79),(1008,'李芳','女','24','1998-05-04','武汉',89);
+
+-- 2 数据的修改
+ -- 格式1：update 表名 set 字段名=值，字段名=值...；
+ -- 格式2：update 表名 set 字段名=值，字段名=值...where 条件；
+-- #需求1.将所有学生的地址修改为重庆
+update student set address='重庆';
+-- #需求2.将id为1003的学生的地址修改为北京
+update student set address='北京' where sid=1003;
+     #需求2.1 将id大于1003的学生的地址修改为北京
+  update student set address='北京' where sid>1003;
+-- #需求3.将id为1005的学生的地址修改为北京，成绩修改为100
+update student set address='北京',score=100 where sid=1005;
+
+-- 3 数据的删除
+ -- 格式：delete from 表名 【where条件】；
+ --       truncate table 表名 或者 truncate 表名
+ -- #需求1.删除sid为1002的学生数据
+   delete from student where sid=1002；
+   delete from sc where grade<=>null;# <=>用于条件等于空不用=而用<=>
+ -- #需求2.删除表所有数据//delete只删除内容
+   delete from student;
+ -- #需求3.清空表数据//truncate:截断 将整个表删除然后创建新表（为空）
+   truncate table student;
+   truncate student;
+
+-- 练习
+-- 1.创建表
+/*创建员工表employee，字段如下：    id（员工编号），name（员工名字），
+gender（员工性别），salary（员工薪资）
+*/
+create table if not exists mydb1.employee(
+id int,
+name varchar(20),
+gender varchar(10),
+salary DOUBLE
+);
+
+-- 2.插入数据
+/*1.1 张三 男 2000
+  2.2 李四 男 1000
+  3.3 王五 女 4000
+	*/
+insert into employee values(1,'张三','男',2000),
+	                           (2,'李四','男',1000),
+		           (3,'王五','女',4000);
+-- 3.修改表数据
+-- 3.1 将所有员工薪水修改为5000元
+update employee set salary=5000;	
+-- 3.2 将姓名为张三的员工薪水改为3000元
+update employee set salary=3000 where name='张三';
+-- 3.3 将姓名为李四的员工的薪水改为4000元，gender改为女
+update employee set salary=4000,gender='女' where name='李四';
+-- 3.4 将王五的薪水在原有的基础上增加1000元
+update employee set salary=salary+1000,gender='女' where name='王五';
+
+
+-- 约束
+-- 1 主键约束
+-- 单列主键约束
+-- 方法一-语法：
+-- create table 表名（...<字段名><数据类型>primary key...); 
+-- 方法一-实现：
+create table emp1(
+	 id int primary key,#这一列数据不能为空且唯一 唯一标识这一行
+	 name varchar(20),
+	 deptId int,
+	 salary DOUBLE
+);	
+--  方法2-语法：
+-- create table 表名（...【constraint<约束名>】primary key 【字段名】);
+-- 方法2-实现
+create table emp2(
+id int,
+name varchar(20),
+deptId int,
+salary double,
+constraint pk1 primary key(id)-- constraint pk1可以省略
+);
+
+-- 主键的作用
+insert into emp2(id,name,deptId,salary)values(1001,'张三',10,5000);
+insert into emp2(id,name,deptId,salary)values(1001,'李四',20,3000);
+-- 这个与上行语句不能同时执行原因为id相同 id不能为重复值
+emp2(id,name,deptId,salary)values(null,'李四',20,3000);-- 不能执行id为key不能为空
+
+
+-- 联合主键
+-- 所谓的联合主键，就是这个主键是由一张表中多个字段组成的
+-- primary key （字段1，字段2，字段3，...，）
+create table emp3(
+name VARCHAR(20),
+deptId int,
+salary DOUBLE,
+constraint pk2 primary key(name,deptId)
+);
+
+insert into emp3 values('张三',10,5000);√
+insert into emp3 values('张三',20,5000);√
+insert into emp3 values('王五',10,5000);√
+-- 联合主键每一个都不能为空
+insert into emp3 values(null,30,5000);×
+insert into emp3 values('赵六',null,5000);×
+insert into emp3 values(null,null,5000);×
+-- 联合主键每一个都不能重复
+insert into emp3 values('张三',10,4000);×
+insert into emp3 values('张三',10,5000);×
+
+
+
+-- 添加单列主键
+create table emp4(
+eid int,
+name varchar(20),
+deptId int,
+salary double
+);
+alter table emp4 add primary key(eid);
+-- 添加多列主键
+create table emp5(
+eid int,
+name varchar(20),
+deptId int,
+salary double
+);
+alter table emp5 add primary key(name,deptId);
+
+-- 删除单列主键
+alter table emp4 drop primary key;
+-- 删除联合主键
+alter table emp5 drop primary key;
+
+
+
+-- 自增长约束
+-- auto_increment实现主键自增长 所以自增长约束只能有一个
+create table t_user1(
+id int primary key auto_increment, 
+name varchar(20)
+)；
+insert into t_user1 values(null,'张三');
+insert into t_user1(name) values('李四');
+
+-- 指定自增长的初始值
+-- 方式1：创建表时指定
+create table t_user2(
+id int primary key auto_increment, 
+name varchar(20)
+)auto_increment=100;
+insert into t_user2 values(null,'张三');
+
+-- 方式2：创建表之后指定
+create table t_user3(
+id int primary key auto_increment, 
+name varchar(20)
+);
+alter table t_user3 auto_increment=200;
+insert into t_user3 values(null,'张三');
+insert into t_user3 values(null,'李四');
+
+delete from t_user1;-- delete删除数据后，自增长在最后一个值的基础上加1
+truncate t_user3;-- truncate删除数据 无法保留上次自增的记录
+
+-- 非空约束not NULL  -- modify：修改
+-- 方式一：字段名 数据类型 not null;#创建表时
+-- 方式二：alter table 表名 modify 字段 类型 not null；#创建表后
+-- 去掉非空约束
+-- alter table 表名 modify 字段 类型；
+desc t_user4；#查看表
+
+
+-- 唯一约束
+-- 方式一 ：字段名 数据类型 unique  #unique：独一无二的
+-- 方式二：alter table 表名 add constraint 约束名 unique(列名）；#constraint：约束
+
+create table t_user4(
+id int,
+name varchar(20),
+phone_number varchar(20)  unique#方式一：指定唯一约束
+）；
+#方式二：格式：alter table 表名 add constraint 约束名（列名）；
+alter table t_user4 add constraint unique_pn unique(phone_number);
+-- 在MySQL中null和任何值都不同 甚至是null
+-- 删除唯一约束
+-- 格式：alter table 表名 drop index 唯一约束名； 
+#当没有唯一约束名时当前列名就是唯一约束名
+alter table t_user4 drop index unique_pn;
+
+
+-- 默认约束 不给值时默认【default】
+-- 方式一：创建表时直接加default 默认值
+-- 方式二：alter table 表名 modify 列名 类型 default 默认值；
+create table t_user5 (
+id int,
+name varchar(20),
+address varchar(20) default '深圳' --  方法一
+);
+alter table t_user5 modify address varchar(20) default '深圳';-- 方式二
+insert into t_user5(id,name)values(1001,'张三');-- 默认address为深圳
+insert into t_user5(id,name)values(1002,'李四');
+insert into t_user5(id,name,address) values(1002,'李四','上海');-- address为上海 不用默认值
+insert into t_user5(id,name,address) values(1002,'李四',null);-- 为null，不为默认值
+
+-- 删除默认约束【default null】（default：不履行，欠缺）
+-- 格式：alter table 表名 modify 列名 类型 default null;
+alter table t_user5 modify address varchar(20) default null;
+
+-- 零填充约束（针对数值类型 在前面填充零）【int（数值长度） zerofill】（zerofill：补零）
+/*zerofill默认为int(10)
+  当使用zerofill时默认会自动加unsigned(无符号)属性*/
+-- 格式：int(数值长度) zerofill
+create table t_user6(
+id int(10) zerofill,
+name varchar(20)
+);
+insert into t_user6 values(123,'张三');
+-- 删除约束
+alter table t_user6 modify id int;
+
+
+-- DQL
+-- 数据查询【select】
+-- 1.查询所有商品
+select * from product;
+
+-- 2.查询商品名和商品价格
+select pname,price from product;
+
+-- 3.别名查询，使用的关键字是as（as可以省略）
+-- 3.1表别名【as】
+select * from product as p;#方式一
+select * from product    p;#方式二
+-- 3.2列别名【as】
+select pname as '商品名',price '商品价格' from product;
+
+-- 4.去掉重复值【distinct】
+select distinct price from product;		
+select distinct * from product;	
+
+-- 5.查询结果是表达式（运算查询）：所有商品的加价10元进行显示。
+select pname,price+10 new_price from product;
+
+
+-- 排序查询【order by】去重【distinct】
+-- select 字段名2，字段名2...from 表名 order by 字段名1 【asc|desc】，字段名2【asc|desc】......
+-- 1.使用价格排序
+select * from product order by price;#默认升序
+select * from product order by price desc;#降序
+-- 2.在价格排序的基础上，使用分类排序
+select * from product order by price desc,category_id desc;
+-- 3.显示商品的价格（去重），并排序（降序）
+select distinct price from product order by price desc;
+
+-- 聚合查询
+-- 1.查询商品的总条目【count】
+select count(pid) from product;
+-- 2.查询价格大于两百的商品总条目
+select count(pid) from product where price>200;
+-- 3.查询分类为‘c001’的所有商品价格总和【sum】
+select sum(price) from product where category_id = 'c001';
+-- 4.查询商品最大最小价格；【min】
+select max(price),min(price) from product;
+select max(price) max_price,min(price) min_price from product;#顺便起别名
+-- 5.查询分类为‘c002’所有商品的平均价格【avg】
+select avg(price) from product where category_id='c002';

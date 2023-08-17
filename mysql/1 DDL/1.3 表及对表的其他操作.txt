@@ -1,0 +1,45 @@
+-- 表
+-- 选择mydb1
+use mydb1;
+-- 创建表
+create table if not exists student(
+sid int,-- 学号
+name varchar(20),
+gender varchar(10),-- 性别
+age int,
+birth date,
+address varchar(20),-- 地址
+score double
+);
+
+-- 1 查看当前数据库所有的表
+show tables;
+-- 2 查看指定表的创建语句
+show create table student;
+-- 3 查看表结构
+desc student;-- desc 描述
+-- 4 删除表
+drop table student;
+
+-- 修改表结构
+-- 1 添加列：alter table 表名 add 列名 类型（长度）【约束】；
+  -- 需求： 为student表添加一个新的字符段为：系别 dept 类型为 varchar（20）
+# alter table 表名      add 列名  类型（长度）【约束】;//alter
+   alter table student add dept varchar(20);
+-- 2 修改列名和类型： alter table 表名 change 旧列名 新列名 类型（长度） 【约束】；
+  -- 需求：为student表的dept字段更换为department varchar（30）
+# alter table 表名    change 旧列名 新列名         类型（长度） 【约束】;
+   alter table student change dept department varchar(30);
+-- 3 删除列：alter table 表名 drop 列名
+  -- 删除student表中的department;
+# alter table 表名     drop  列名;
+  alter table student drop department;
+-- 4 修改表名： rename table 表名 to 新表名
+  -- 需求：将student表的名字改为stu
+#rename table   表名   to 新表名
+ rename table student to stu;
+
+-- 查询表
+select 列名 from 表名 where 条件 and 条件;
+select * from 表名 where 条件 and 条件;#*代表所有
+select * from 表名 where 某一列名 like '%华%'; # 查询表中某项有 华 字的行

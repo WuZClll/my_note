@@ -1,0 +1,31 @@
+类型             大小          用途           默认有符号的 tintint unsigned无符号
+
+整形
+tinyint         1bytes     小整数值   （-128，127） （0，255）
+smallint       2bytes     大整数值
+mediumint  3bytes     大整数值
+int或integer 4bytes     大整数值
+bigint           8bytes    极大整数值
+
+浮点型
+float            4bytes     单精度 浮点数值
+double        8bytes     双精度 浮点数值
+decimal    依赖于M和D 小数值 ☞特殊 decimal（M,D) -- EG decimal（5，2）整数小数共五位 小数保留2位
+
+字符串类型
+char                              定长字符串
+varchar                         变长字符串 ☞EG name varchar（20）指最长20个字符
+tinyblob                        不超过255个字符
+tinytext                          短文本字符串
+blob                              二进制形式的长文本数据
+text                               长文本数据
+mediumtext                  中等长度文本数据
+longblob                       二进制形式的极大文本数据
+longtext                        极大文本数据
+
+日期类型
+date                               年月日
+time                               时分秒
+year                               年
+datetime                       年月日时分秒
+timestamp                    混合日期和时间值，时间戳 获取当前时区的时间

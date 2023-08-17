@@ -1,0 +1,9 @@
+-- 排序查询【order by {asc|desc}】去重【distinct】
+-- select 字段名2，字段名2...from 表名 order by 字段名1 【asc|desc】，字段名2【asc|desc】......
+-- 1.使用价格排序
+select * from product order by price;#默认升序
+select * from product order by price desc;#降序
+-- 2.在价格排序的基础上，使用分类排序
+select * from product order by price desc,category_id desc;
+-- 3.显示商品的价格（去重），并排序（降序）【distinct】
+select distinct price from product order by price desc;

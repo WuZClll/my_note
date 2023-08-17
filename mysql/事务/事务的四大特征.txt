@@ -1,0 +1,51 @@
+事务简介
+·数据库的事务(Transaction)是一种机制、一个操作序列，包含了一组数据库操作命令
+·事务把所有的命令作为一个整体一起向系统提交或撤销操作请求，即这一组数据库命令要么同时成功，要么同时失败
+·事务是一个不可分割的工作逻辑单元
+
+-- 开启事务
+START TRANSACTION;或者 BEGIN;
+start transactton;或者 begin;
+-- 出异常 回滚事务
+ROLLBACK;
+rollback;
+-- 提交事务
+COMMIT;
+commit;
+
+/*
+事务四大特征b
+·原子性(Atomicity):事务是不可分割的最小操作单位，要么同时成功，要么同时失败·
+·一致性(Consistency):事务完成时，必须使所有的数据都保持一致状态
+·隔离性（lsolation):多个事务之间，操作的可见性
+·持久性(Durability):事务一旦提交或回滚，它对数据库中的数据的改变就是永久的
+
+*/
+create database mydb4;
+use mydb4;
+-- 创建账户表
+create table account(
+id int PRIMARY key auto_increment,
+name VARCHAR(10),
+money double(10,2)
+);
+
+-- 添加数据
+insert into account(name, money) values('张三',1000),('李四',1000);
+SELECT * from account;
+UPDATE account set money = 1000;
+
+-- 转账操作
+-- 开启事务
+BEGIN;
+-- 1.李四金额 -500
+UPDATE account set money = money - 500 where name = '李四';
+出错了...;
+-- 2.张三金额 +500
+UPDATE account set money = money + 500 where name = '张三';
+-- 4.没出错就提交事务
+COMMIT;
+-- 3.出错就回滚事务
+ROLLBACK
+
+

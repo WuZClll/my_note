@@ -1,0 +1,17 @@
+-- 默认约束 【default】不给值时默认
+-- 方式一：创建表时直接加default
+-- 方式二：alter table 表名 modify 列名 类型 default 默认值；
+create table t_user5 (
+id int,
+name varchar(20),
+address varchar(20)-- default '深圳'  方法一
+);
+alter table t_user5 modify address varchar(20) default '深圳';-- 方式二
+insert into t_user5(id,name)values(1001,'张三');-- 默认address为深圳
+insert into t_user5(id,name)values(1002,'李四');
+insert into t_user5(id,name,address) values(1002,'李四','上海');-- address为上海 不用默认值
+insert into t_user5(id,name,address) values(1002,'李四',null);-- 为null，不为默认值
+
+-- 删除默认约束
+-- 格式：alter table 表名 modify 列名 类型 default null;
+alter table t_user5 modify address varchar(20) default null;

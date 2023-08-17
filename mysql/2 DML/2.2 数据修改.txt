@@ -1,0 +1,12 @@
+ -- 2 数据的修改
+ -- 格式1：update 表名 set 字段名=值，字段名=值...；
+ -- 格式2：update 表名 set 字段名=值，字段名=值...where 条件；
+-- #需求1.将所有学生的地址修改为重庆
+update student set address='重庆';
+-- #需求2.将id为1003的学生的地址修改为北京
+update student set address='北京' where sid=1003;
+     #需求2.1 将id大于1003的学生的地址修改为北京
+  update student set address='北京' where sid>1003;
+-- #需求3.将id为1005的学生的地址修改为北京，成绩修改为100
+update student set address='北京',score=100 where sid=1005;
+

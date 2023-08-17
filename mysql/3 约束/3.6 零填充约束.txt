@@ -1,0 +1,11 @@
+-- 零填充约束（针对数值类型 在前面填充零）
+/*zerofill默认为int(10)
+  当使用zerofill时默认会自动加unsigned(无符号)属性*/
+-- 格式：int(数值长度) zerofill
+create table t_user6(
+id int(10) zerofill,
+name varchar(20)
+);
+insert into t_user6 values(123,'张三');
+-- 删除约束
+alter table t_user6 modify id int;

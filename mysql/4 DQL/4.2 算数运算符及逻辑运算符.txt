@@ -1,0 +1,39 @@
+select 6+2;
+-- 将所有商品的价格加十元
+select pname,price+10 as new_price from product;
+-- 将所有的商品价格上调10%
+select pname,price*1.1 as new_price from product;	
+-- 查询商品名称为“海尔洗衣机”的商品所有信息
+select * from product where pname = '海尔洗衣机';
+-- 查询价格为800的所有商品
+select *from product where price = 800;
+-- 查询商品不是800的所有商品
+select *from product where price != 800;
+select *from product where price <> 800;
+select *from product where not(price = 800);
+-- 查询价格大于60的所有商品
+select *from product where price >= 60;
+-- 查询价格在200-1000之间的所有商品
+select *from product where between 200 and 1000;
+select *from product where price >= 200 and price <= 1000;
+select *from product where price > 200 && price <= 1000;
+-- 价格是200或800的所有商品
+select *from product where price in(200，800);
+select *from product where price = 200 or price = 800;
+select *from product where price = 200 || price = 800;
+-- 查询含有“鞋”字的所有商品# %用于匹配任意字符
+select *from product where pname =like'%鞋';#前面是什么不管，只要最后一个是鞋就可以
+select *from product where pname like '%鞋%';
+-- 查询以‘海’字开头的所有商品
+select *from product where pname like '海%';
+-- 查询第二个字为“寇”的所有商品
+select *from product where pname like '_蔻%';-- 下划线匹配单个字符
+-- 查询category_id为null的商品
+select *from product where category_id is null;
+-- 查询category_id不是null的商品
+select *from product where category_id is not null;
+-- 使用least求最小值#如果有一个null，则不会比较结果直接为null
+select least(10,5,20) as small_number;
+select least(10,null,20) as small_number;
+-- 使用greatest求最大值#如果有一个null，则不会比较结果直接为null
+select greatest(10,5,20) as small_number;

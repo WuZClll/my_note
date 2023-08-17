@@ -1,0 +1,19 @@
+-- 1.查询所有商品【select】
+select * from product;
+
+-- 2.查询商品名和商品价格
+select pname,price from product；
+	
+-- 3.别名查询，使用的关键字是as（as可以省略
+-- 3.1表别名
+select * from product as p;#方式一
+select * from product    p;#方式二
+-- 3.2列别名
+select pname as '商品名',price '商品价格' from product;
+
+-- 4.去掉重复值【distinct】
+select distinct price from product；
+select distinct * from product;	
+
+-- 5.查询结果是表达式（运算查询）：所有商品的加价10元进行显示。
+select pname,price+10 new_price from product;

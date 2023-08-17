@@ -1,0 +1,16 @@
+-- 唯一约束
+-- 方式一 ：字段名 数据类型 unique  #unique：独一无二的
+-- 方式二：alter table 表名 add constraint 约束名 unique(列）；#constraint：约束
+
+create table t_user4(
+id int,
+name varchar(20),
+phone_number varchar(20)  unique#方式一：指定唯一约束
+);
+#方式二：格式：alter table 表名 add constraint 约束名（列名）；
+alter table t_user4 add constraint unique_pn unique(phone_number);
+-- 在MySQL中null和任何值都不同 甚至是null
+-- 删除唯一约束
+-- 格式：alter table 表名 drop index 唯一约束名； 
+#当没有唯一约束名时当前列名就是唯一约束名
+alter table t_user4 drop index unique_pn;

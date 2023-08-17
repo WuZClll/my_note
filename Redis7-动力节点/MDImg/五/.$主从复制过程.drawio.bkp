@@ -1,0 +1,236 @@
+<mxfile host="Electron" modified="2023-08-17T01:44:42.334Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="aO7guC4Wivql6t3lu2pY" version="21.2.1" type="device">
+  <diagram name="第 1 页" id="SDm4IXGnfj91kycFvY-K">
+    <mxGraphModel dx="1619" dy="829" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-8" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-1" target="PjGt_Il8nLCpIExnSnjX-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-1" value="客户端发送slaveof &amp;lt;master_ip&amp;gt; &amp;lt;master_port&amp;gt;命令给slave" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="15" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-9" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-4" target="PjGt_Il8nLCpIExnSnjX-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-4" value="slave接收到slaveof命令后&lt;b&gt;将master地址保存到本地&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="84" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-10" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-5" target="PjGt_Il8nLCpIExnSnjX-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-5" value="slave中的定时任务会&lt;b&gt;向master发出连接请求&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="153" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-11" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-7" target="PjGt_Il8nLCpIExnSnjX-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="513" y="299" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-21" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-7" target="PjGt_Il8nLCpIExnSnjX-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="189" y="245.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-43" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="778" y="177" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="818" y="215" />
+              <mxPoint x="817" y="217" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-7" value="连接成功？" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=16;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="252" y="222" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-15" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-12" target="PjGt_Il8nLCpIExnSnjX-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-12" value="连接成功后slave会&lt;b&gt;发送ping命令给master&lt;/b&gt;进行首次通信" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="298" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-18" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-13" target="PjGt_Il8nLCpIExnSnjX-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-13" value="master在接收到slave的ping命令后对&lt;b&gt;slave进行身份验证&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="371" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-14" value="是" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="515" y="266" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-19" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-17" target="PjGt_Il8nLCpIExnSnjX-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="183" y="467.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-35" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-17" target="PjGt_Il8nLCpIExnSnjX-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="513" y="525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-17" value="身份验证通过？" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=16;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="252" y="444" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-20" value="拒绝连接" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-98" y="442" width="94" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-22" value="停止连接" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-98" y="222" width="94" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-23" value="否" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="192" y="435" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-24" value="接收到slaveof no one命令" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-4" y="211" width="202" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-34" value="否" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="759" y="205" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-38" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-36" target="PjGt_Il8nLCpIExnSnjX-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-36" value="master向slave发送连接成功响应" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="517" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-40" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-37" target="PjGt_Il8nLCpIExnSnjX-66">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="513" y="711" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-42" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;endArrow=classicThin;endFill=1;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-37">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="774" y="177" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="819" y="351" />
+              <mxPoint x="817" y="395" />
+              <mxPoint x="817" y="287" />
+              <mxPoint x="803" y="203" />
+              <mxPoint x="817" y="426" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-37" value="slave接收到了master响应？" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=16;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="252" y="590" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-45" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-39" target="PjGt_Il8nLCpIExnSnjX-46">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="513" y="1322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-50" style="edgeStyle=elbowEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;elbow=vertical;rounded=0;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-39" target="PjGt_Il8nLCpIExnSnjX-51">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1006" y="1046" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1089" y="1000" />
+              <mxPoint x="957" y="901" />
+              <mxPoint x="1095" y="1000" />
+              <mxPoint x="1090" y="974" />
+              <mxPoint x="1095" y="1000" />
+              <mxPoint x="1120" y="1000" />
+              <mxPoint x="1070" y="1000" />
+              <mxPoint x="802" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-39" value="数据同步过程中master主进程又有些操作发生？" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=16;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="252" y="976" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-41" value="是" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="521" y="632" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-44" value="否" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="769" y="581" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-48" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-46" target="PjGt_Il8nLCpIExnSnjX-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-46" value="数据同步完毕后slave读取本地持久化文件，恢复内存数据，对外服务" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="1319" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-47" value="对外服务中master持续接收到写操作，会以增量方式发送给slave" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="1395" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-49" value="否" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="515" y="1021" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-52" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-51" target="PjGt_Il8nLCpIExnSnjX-55">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1092" y="1134" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-51" value="master将数据写入到本地内存的同时又将数据写入到同步缓存" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="831" y="1035" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-53" value="数据同步完毕后slave读取本地持久化文件，恢复内存数据，对外服务" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="1319" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-56" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-55" target="PjGt_Il8nLCpIExnSnjX-51">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1405" y="1110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-59" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-55" target="PjGt_Il8nLCpIExnSnjX-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-55" value="master的持久化文件数据发送完毕？" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=16;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="831" y="1106" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-57" value="否" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1349" y="1099" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-62" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-58" target="PjGt_Il8nLCpIExnSnjX-61">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-58" value="master将数据写入到本地内存的同时又将数据写入到同步缓存" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="833" y="1176" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-60" value="是" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1095" y="1150" width="34" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-63" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-61" target="PjGt_Il8nLCpIExnSnjX-53">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1094" y="1340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-61" value="slave将数据追加到本地持久化文件中，数据同步完毕" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="831" y="1249" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-64" value="主从复制过程" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="621" y="1478" width="114" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-70" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-66" target="PjGt_Il8nLCpIExnSnjX-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-66" value="slave向master发出全量数据同步请求" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="663" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-71" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-67" target="PjGt_Il8nLCpIExnSnjX-68">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-67" value="master在接收到数据同步请求后fork出一个子进程进行数据持久化" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="738" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-72" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-68" target="PjGt_Il8nLCpIExnSnjX-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-68" value="持久化完毕后master再fork出一个子进程将持久化文件发送给slave" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="816" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-74" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="PjGt_Il8nLCpIExnSnjX-69" target="PjGt_Il8nLCpIExnSnjX-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-69" value="slave接收到master的数据并写入到本地持久化文件" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="252" y="888" width="522" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="PjGt_Il8nLCpIExnSnjX-73" value="是" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="768" y="972" width="34" height="31" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

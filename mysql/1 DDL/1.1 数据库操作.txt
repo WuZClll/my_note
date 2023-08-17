@@ -1,0 +1,20 @@
+-- 1.DDL操作之数据库操作
+
+-- 查看所有数据库
+show databases;
+-- 创建数据库
+create database mydb1;
+create database if not exists mydb1;
+-- 选择使用哪一个数据库
+use mydb1;
+-- 删除数据库
+drop database mydb1;
+drop database if exists mydb1;
+-- 修改数据库编码
+alter datsbase mydb1 character set utf-8; -- alter：改变
+
+
+-- 查看表或表中某行
+select * from 表名 where 条件1and条件2 ;  #*代表所有列
+select * from 表名 where 某一列名 like '%华%'; # 查询表中某项有 华 字的行
+

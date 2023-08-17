@@ -1,0 +1,10 @@
+-- 3 数据的删除
+ -- 格式：delete from 表名 【where条件】；
+ --       truncate table 表名 或者 truncate 表名
+ -- #需求1.删除sid为1002的学生数据
+   delete from student where sid=1002；
+ -- #需求2.删除表所有数据//delete只删除内容
+   delete from student;
+ -- #需求3.清空表数据//truncate:截断 将整个表删除然后创建新表（为空）
+   truncate table student;
+   truncate student;

@@ -1,0 +1,17 @@
+-- 聚合查询
+-- 1.查询商品的总条目【count】
+select count(pid) from product;
+-- 2.查询价格大于两百的商品总条目
+select count(pid) from product where price>200;
+-- 3.查询分类为‘c001’的所有商品价格总和【sum】
+select sum(price) from product where category_id = 'c001';
+-- 4.查询商品最大最小价格；【min】
+select max(price),min(price) from product;
+select max(price) max_price,min(price) min_price from product;#顺便起别名
+-- 5.查询分类为‘c002’所有商品的平均价格【avg】
+select avg(price) from product where category_id='c002';
+
+-- null值处理    #default 0 默认约束                                                                                                                                  
+select count(*),count(1),count(c2) from test_null;            
+ 
+                                      

@@ -1,0 +1,61 @@
+-- 准备数据
+create table studnt(
+  id int,
+  name varchar(20),
+  gender varchar(20),
+  chinese int,
+  english int,
+  math int
+);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (1,'张明','男',89,78,90);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (2,'李进','女',67,53,95);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (3,'王五','女',87,78,77);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (4,'李一','女',88,98,92);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (5,'李财','男',82,84,67);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (6,'张宝','男',55,85,45);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (7,'黄蓉','女',75,65,30);
+insert into studnt (id, name, gender, chinese, english, math) VALUES (7,'黄蓉','女',75,65,30);
+-- 查询表中所有学生的信息
+select * from student;
+-- 查询表中所有学生的姓名和对应的英语成绩
+select name,english from student;
+-- 过滤表中的重复数据
+select distinct * from student;
+-- 统计所有学生的总分
+select name,(chinese+english+math) as total_score from student;
+-- 在所有学生总分数上加10分特长分
+select name,(chinese+english+math+10) as total_score from student;
+-- 使用别名表示学生分数
+select name,chinese '语文成绩',english '英语成绩',math '数学成绩' from student;
+-- 查询英语成绩大于90分的同学
+select * from student where english>90;
+-- 查询总分大于200分的所有同学
+select *,chinese+english+math as total_score from student where  (chinese+english+math)>200;
+-- 查询英语分数在80--90之间的同学
+select name,english from student where english between 80 and 90;
+select name,english from student where english>=80 and english<=90;
+-- 查询英语分数不在80--90之间的同学
+select name,english from student where not english between 80 and 90;
+select name,english from student where english not between 80 and 90;
+select name,english from student where not english>=80 and english<=90;
+select name,english from student where not english<80 || english>90;
+-- 查询数学成绩为89，90，90的同学
+select * from student where math in(89,90,91);
+-- 查询数学成绩不为89，90，90的同学
+select * from student where math not in(89,90,91);
+select * from student where not math in(89,90,91);
+-- 查询所有姓李的学生英语成绩
+select name,english from student where name like '李%';
+-- 查询数学80且语文80的同学
+select name,math,chinese from student where math=80&&chinese=80;
+-- 对数学成绩降序排序后输出
+select * from student order by math desc;
+-- 对总分排序后输出，然后从高到低的顺序输出
+select * from student order by (chinese+math+english) desc;
+-- 对姓李的学生总分成绩排序输出
+select * from student where name like'李%'order by (chinese+math+english) desc;
+-- 查询男生和女生分别有多少人，并将人数降序排序输出
+select gender,count(*) as total_cnt from student group by gender order by total_cnt desc;
+select gender,count(*) as total_cnt from student group by gender order by total_cnt desc;
+-- 查询男生和女生谁的人数大于四并降序排序
+select gender,count(*) as total_cnt from student group by gender having total_cnt>4 order by total_cnt desc;

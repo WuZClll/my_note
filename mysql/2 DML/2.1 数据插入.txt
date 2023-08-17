@@ -1,0 +1,13 @@
+-- 1 数据的插入
+ -- 格式1：insert into 表（列名1，列名2，列名3...）                                value（值1，值2，值3...）；
+                insert into student(sid,name,gender,age,birth,address,score)values(1001,'张三','男',18,'2001-12-23','北京',85.5);
+    -- 一次插入多行
+        insert into student(sid,name,gender,age,birth,address,score)values(1002,'王五','女',19,'2000-12-23','上海',82.5),
+                                                                                                                 (1003,'李四','男',18,'2001-12-2','南京',80);
+    -- 只给某一列赋值
+        insert into student(sid)values(1005);
+ -- 格式2：insert into   表名    value（值1，值2，值3...);//向表中插入所有列
+                 insert into student values(1006,'张华','女',21,'1999-01-08','广州',79);
+    -- 一次插入多行
+        insert into student values(1007,'钱博','男',21,'2005-05-08','武汉',79),
+                                               (1008,'李芳','女','24','1998-05-04','武汉',89);

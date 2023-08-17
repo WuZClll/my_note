@@ -1,0 +1,16 @@
+【insert into  select】
+-- 将product表中的pname和price插入到product表中
+-- 1	
+create table product2(
+  pname VARCHAR(20),
+ price DOUBLE
+); 
+insert into product2(pname,price) select pname,price from product;
+select * from product2;
+-- 2
+create table product3(
+  category_id VARCHAR(20),
+	product_count DOUBLE
+	); 
+insert into product3 select category_id,count(*)from product group by category_id;	
+select * from  product3;

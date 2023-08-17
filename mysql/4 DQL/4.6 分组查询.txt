@@ -1,0 +1,34 @@
+-- 分组查询【group by】【having】
+-- 分组之后进行筛选用having；where用于筛选from子句中指定操作所产生的行
+-- select 字段1，字段2...from 表名 group by 分组字段 having 分组条件；
+-- 1.统计各个分类商品的个数
+SELECT
+	category_id,
+	count( pid ) #pid的列数
+FROM
+	product 
+GROUP BY
+	category_id;-- 注意 分组之后 select后只能写分组字段和聚合函数
+               #以下为错误示范
+SELECT
+	pname,#pname不属于分组字段或聚合函数
+	category_id,
+	count( pid ) 
+FROM
+	product 
+GROUP BY
+	category_id;#错误 pname不属于分组字段
+	
+-- 2.统计各个分类商品的个数，且只显示个数大于四的信息
+
+SELECT
+	category_id,
+	count( pid ) cnt -- cnt为别名
+FROM
+	product 
+GROUP BY
+	category_id 
+HAVING
+	count( category_id )> 4 
+ORDER BY#order by排序 默认正序(大的在上)
+	cnt;

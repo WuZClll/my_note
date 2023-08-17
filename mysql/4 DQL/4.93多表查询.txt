@@ -1,0 +1,230 @@
+-- 创建部门表
+create table if not exists dept3 (
+deptno varchar (20) primary key,-- 部门号
+name varchar (20)-- 部门名字
+);
+-- 创建员工表
+create table if not exists emp3 (
+eid varchar (20) primary key, -- 员工编号
+ename varchar (20), -- 员工名字
+age int, -- 员工年龄
+dept_id varchar (20)-- 员工所属部门
+);
+-- 给dept3表添加数据
+insert into dept3 values ('1001','研发部');
+insert into dept3 values ('1002','销售部');
+insert into dept3 values ('1003','财务部');
+insert into dept3 values ('1004','人事部');
+
+-- 给emp3表添加数据
+insert into emp3 values ('1','乔峰',20,'1001');
+insert into emp3 values ('2','段誉',21,'1001');
+insert into emp3 values ('3','虚竹',23,'1001');
+insert into emp3 values ('4','阿紫',18,'1001');
+insert into emp3 values ('5','扫地僧',85,'1002');
+insert into emp3 values ('6','李秋水',33,'1002');
+insert into emp3 values ('7','鸠摩智',50,'1002');
+insert into emp3 values ('8','天山童姥',60,'1003');
+insert into emp3 values ('9','慕容博',58,'1003');
+-- insert into emp3 values ('10','丁春秋',71,'1005');#依赖主表 错误
+
+-- ◆交叉连接查询
+#交叉连接查询返回被连接的两个表所有数据行的笛卡尔积
+#笛卡尔积可以理解为一张表的每一行去和另外一张表的任意一行进行匹配
+#假如A表有m行数据,lB表有n行数据,则返回m*n行数据
+#笛卡尔积会产生很多冗余的数据，后期的其他查询可以在该集合的基础上进行条件筛选
+-- >格式
+-- select * from表1,表2,表3.... ;实现
+-- 交叉连接查询
+select *from dept3,emp3 ;
+
+-- 内连接查询
+-- 内连接查询求多张表的交集
+-- >格式
+-- 隐式内连接（sQL92标准）: select * from A,B where条件;
+-- 显示内连接（sQL99标准）: select * from A [inner] join B on 条件;
+-- >操作
+-- 查询每个部门的所属员工
+select * from dept3, emp3 where dept3.deptno = emp3.dept_id;
+select * from dept3 inner join emp3 on dept3.deptno = emp3.dept_id;
+-- 查询研发部门的所属员工
+-- 隐式内连接
+select * from dept3 a,emp3 b where a.deptno = b.dept_id and name = '研发部';
+-- 显示内连接
+select * from dept3 a inner join emp3 b on a.deptno = b.dept_id and name = '研发部';
+-- 查询研发部和销售部的所属员工
+select * from dept3 a inner join emp3 b on a.deptno = b.dept_id and (name = '研发部' or name = '销售部');
+select * from dept3 a inner join emp3 b on a.deptno = b.dept_id and name in ('研发部','销售部');
+-- 查询每个部门的员工数，并升序排序
+selecta.name,a.deptno,count(1) from dept3 a join emp3 b on a.deptno = b.dept_id group by a.deptno;#count(1)==count(*) 由于分组字段a.deptno对a.name没影响 所以可以查询a.name
+-- 查询人数大于等于3的部门，并按照人数降序排序
+select#3
+ a.deptno,
+ a.name,
+ count(1) as total_cnt
+from dept3 a#1
+ join emp3 b on a.deptno = b.dept_id
+group by#2
+ a.deptno,name;
+having#4
+ total_cnt >= 3
+order by#5
+ total_cnt desc;
+
+-- 外连接查询
+-- 外连接分为左外连接（left outer join)、右外连接(right outer join)，满外连接(full outer join)。
+-- 注意:oracle里面有full join,可是在mysql对full join支持的不好。我们可以使用union来达到目的。
+-- 格式
+/*
+左外连接: left [outer] join #左表为主，右表有为右表数据，没有补null
+	select* from A left outer join B on条件;
+右外连接: right [outer] join
+	select * from A right outer join B on条件;
+满外连接: full [outer] join
+	select * from A full outer join B on条件;
+*/
+-- 操作
+-- 外连接查询
+use mydb3;
+-- 查询哪些部门有员工,哪些部门没有员工
+select * from dept3 left outer join emp3 on dept3.deptno = emp3. dept_id;#左连输出左表的全部数据，加上左表对应的右表的数据，没有就补null
+select * from dept3 a left join emp3 b on a.deptno = b.dept_id;
+/*
+select
+  * 
+from A 
+	left join B on 条件1 
+	left join C on 条件2
+	left join D on 条件3；
+*/
+-- 查询那些员工有对应的部门，那些没有
+select * from dept3 right outer join emp3 on dept3.deptno = emp3.dept_id;
+select * from dept3 a right join emp3 b on a.deptno = b.dept_id;
+/*
+select
+ * 
+from A
+ right join B on 条件1
+ right join C on 条件2
+ right join D on 条件3
+*/
+
+-- 实现满外连接 full join
+-- 使用union关键字实现左外连接和右外连接的并集
+-- select * from dept3 a full join emp3 b on a.deptno = b.dept_idunion;# 不能执行 full join 对mysql支持不好
+select * from dept3 a full join emp3 b on a.deptno = b.dept_idunion;# 不能执行 full join 对mysql支持不好
+-- union是将两个查询结果上下拼接并去重
+-- union all是将两个查询结果上下拼接不去重
+select * from dept3 a left outer join emp3 b on a.deptno = b. dept_id
+union
+select * from dept3 a right outer join emp3 b on a.deptno = b.dept_id;#用union去重取并集 union不去重取并集∪（上下拼起来）
+
+-- 子查询
+-- 子查询就是指的在一个完整的查询语句之中，嵌套若于个不同功能的小查询,从而一起完成复杂查询的—种编写形式，通俗一点就是包含select嵌套的查询。
+-- >特点
+-- 子查询可以返回的数据类型一共分为四种:
+#1.单行单列!返回的是一个具体列的内容，可以理解为一个单值数据;
+#2.单行多列:返回一行数据中多个列的内容;
+#3.多行单列:返回多行记录之中同一列的内容，相当于给出了一个操作范围;
+#4.多行多列:查询返回的结果是一张临时表
+-- 查询询年龄最大的员工信息，显示信息包含员工号、员工名字，员工年龄
+select eid,ename,age from emp3 where age = (select max(age) from emp3);#select max(age) from emp3单行单列可以作为一个值使用
+-- 查询年研发部和销售部的员工信息，包含员工号、员工名字
+select eid,ename,ename from emp3 where dept_id in (select deptno,name from dept3 where name = '研发部' or name = '销售部');
+-- 查询研发部30岁以下的员工信息,包括员工号、员工名字，部门名字
+-- 方式1关联查询
+select * from dept3 a join emp3 b on a.deptno = b.dept_id and (name = '研发部' and age < 30);
+-- 方式2子查询
+select * from (select * from dept3 where name = '研发部') t1 join (select * from emp3 where age < 30) t2 on t1.deptno = t2.dept_id;
+
+-- 子查询中的逻辑关键字
+-- 1.all关键字 and
+-- 2.any关键字↓（同）or
+-- 3.some关键字↑（同）or
+-- 4.in关键字
+-- 5.exists关键字
+
+#all关键字
+-- 格式
+/*select ...from ...where c > all(查询语句)
+-- 等价于:
+select ...from ... where c > resultl and c > result2 and c > result3...
+*/
+-- 查询年龄大于'1003’部门所有年龄的员工信息
+select * from emp3 where age > all(select age from emp3 where dept_id = '1003' ) ;
+-- 查询不属于任何一个部门的员工信息
+select * from emp3 where dept_id != all(select deptno from dept3);
+
+#any和some关键字
+-- 格式(amy == some)
+/*select ...from ...where c > any(查询语句)
+-- 等价于:
+select ...from ... where c > resultl or c > result2 or c > result3
+*/
+-- 查询年龄大于'1003·部门任意某一个员工年龄的员工信息
+select * from emp3 where age > any(select age from emp3 where dept_id = '1003') and dept_id != '1003';
+select * from emp3 where age > some(select age from emp3 where dept_id = '1003') and dept_id != '1003';
+
+#in关键字
+-- 格式
+/*
+select ...from ...where c in(查询语句)
+--等价于:
+select ...from ... where c = resultl or c = result2 or c = result3
+*/
+-- 查询研发部和销售部的员工信息,包含员工号、员工名字
+select eid,ename from emp3 where dept_id in (select deptno from dept3 where name ='研发部' or name ='销售部');
+
+#exisrs关键字
+-- 格式
+-- select ...from ...where exists(查询语句)
+-- 查询公司是否有大于60岁的员工，有则输出
+select * from emp3 a where exists (select * from emp3 b where a.age > 60);
+-- 查询有所属部门的员工信息
+select * from dept3 a where exists (select * from emp3 b where a.deptno = b.dept_id) ;
+
+-- 自关联查询
+-- 格式
+/*
+格式
+select 字段列表 fron 表1 a ,表1 b where条件;
+或者
+select 字段列表 from 表1 a [left] join 表1 b on条件;
+*/
+-- 创建表，并建立自关联约束
+create table t_sanguo (
+eid int primary key,
+ename varchar (20),
+manager_id int,
+foreign key (manager_id) references t_sanguo (eid) -- 添加自关联约束
+);
+
+-- 添加数据
+insert into t_sanguo values ( 1,'刘协',NULL);
+insert into t_sanguo values (2,'刘备',1);
+insert into t_sanguo values (3,'关羽',2);
+insert into t_sanguo values (4,'张飞',2);
+insert into t_sanguo values (5,'曹操',1);
+insert into t_sanguo values (6,'许褚',5);
+insert into t_sanguo values (7,'典韦',5);
+insert into t_sanguo values (8,'孙权',1);
+insert into t_sanguo values ( 9,'周瑜',8);
+insert into t_sanguo values ( 10,'鲁肃',8);
+-- 进行关联查询
+-- 1.查询每个三国人物及他的上级信息，如:关羽刘备
+select * from t_sanguo a, t_sanguo b where a.manager_id = b.eid;
+select a.ename '下属',b.ename '上司' from t_sanguo a join t_sanguo b on a.manager_id = b.eid;
+-- 2.查询所有人物及上级
+select a.ename '下属',b.ename '上司' from t_sanguo a left join t_sanguo b on a.manager_id = b.eid;
+-- 查询所有人物，上级，上上级 比如：张飞 刘备 刘协
+select 
+  a.ename '下属',b.ename '上级 ',c.ename '上上级'
+from t_sanguo a 
+  left join t_sanguo b on a.manager_id = b.eid
+  left join t_sanguo c on b.manager_id = c.eid;
+
+
+	
+	
+
+
